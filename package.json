@@ -1,6 +1,6 @@
 {
-  "name": "variable-translater",
-  "displayName": "variable-translater",
+  "name": "variable-translator",
+  "displayName": "variable-translator",
   "description": "",
   "version": "0.0.1",
   "engines": {
@@ -14,7 +14,7 @@
   "contributes": {
     "commands": [
       {
-        "command": "variable-translater.helloWorld",
+        "command": "variable-translator.helloWorld",
         "title": "Hello World"
       }
     ]

@@ -1,6 +1,6 @@
-# variable-translater README
+# variable-translator README
 
-This is the README for your extension "variable-translater". After writing up a brief description, we recommend including the following sections.
+This is the README for your extension "variable-translator". After writing up a brief description, we recommend including the following sections.
 
 ## Features
 
