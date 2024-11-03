@@ -1,3 +1,4 @@
+import { Validator } from './validator'
 import { Translator } from './translator'
 
 export class Runner {
@@ -20,6 +21,8 @@ export class Runner {
   }
 
   async exec(): Promise<string> {
+    new Validator(this.inputText).exec()
+
     this.responseText = await new Translator(this.inputText).exec()
 
     return this.outputMessage

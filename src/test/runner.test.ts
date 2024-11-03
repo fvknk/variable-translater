@@ -34,8 +34,6 @@ describe('#constructor', () => {
 })
 
 describe('#exec', () => {
-  const inputText = 'test'
-
   let requestStub: sinon.SinonStub
   before(() => {
     requestStub = sinon.stub(Translator.prototype, 'exec')
@@ -45,39 +43,53 @@ describe('#exec', () => {
     requestStub.restore()
   })
 
-  describe('正常なレスポンスを得られた場合', () => {
-    const outputText = 'テスト'
-    const expect = `from: ${inputText} -> to: ${outputText}`
+  describe('正常な文字列を渡した場合', () => {
+    const inputText = 'test'
 
-    it('メッセージを返却すること', async () => {
-      requestStub.resolves(outputText)
+    describe('正常なレスポンスを得られた場合', () => {
+      const outputText = 'テスト'
+      const expect = `from: ${inputText} -> to: ${outputText}`
 
-      const actual = await new Runner(inputText).exec()
+      it('メッセージを返却すること', async () => {
+        requestStub.resolves(outputText)
 
-      assert.strictEqual(actual, expect)
+        const actual = await new Runner(inputText).exec()
+
+        assert.strictEqual(actual, expect)
+      })
+
+      it('outputMessage を呼び出した際にメッセージを返却すること', async () => {
+        requestStub.resolves(outputText)
+
+        const runner = new Runner(inputText)
+        await runner.exec()
+
+        assert.strictEqual(runner.outputMessage, expect)
+      })
     })
 
-    it('outputMessage を呼び出した際にメッセージを返却すること', async () => {
-      requestStub.resolves(outputText)
+    describe('空文字列を返却された場合', () => {
+      it('エラーを返却すること', async () => {
+        requestStub.resolves('')
 
-      const runner = new Runner(inputText)
-      await runner.exec()
+        assert.rejects(async () => await new Runner(inputText).exec(), Error)
+      })
+    })
 
-      assert.strictEqual(runner.outputMessage, expect)
+    describe('null を返却された場合', () => {
+      it('エラーを返却すること', async () => {
+        requestStub.resolves(null)
+
+        assert.rejects(async () => await new Runner(inputText).exec(), Error)
+      })
     })
   })
 
-  describe('空文字列を返却された場合', () => {
+  describe('異常な文字列を渡した場合', () => {
+    const inputText = '1'
+
     it('エラーを返却すること', async () => {
       requestStub.resolves('')
-
-      assert.rejects(async () => await new Runner(inputText).exec(), Error)
-    })
-  })
-
-  describe('null を返却された場合', () => {
-    it('エラーを返却すること', async () => {
-      requestStub.resolves(null)
 
       assert.rejects(async () => await new Runner(inputText).exec(), Error)
     })

@@ -6,7 +6,7 @@ import sinon from 'sinon'
 import { Translator } from '../translator'
 
 describe('#constructor', () => {
-  describe('1文字以上のアルファベットを含む文字列を渡した場合', () => {
+  describe('空文字列でない場合', () => {
     it('値が正しく代入されていること', () => {
       const inputText = 'abcXYZ!?'
       const translator = new Translator(inputText)
@@ -17,29 +17,11 @@ describe('#constructor', () => {
     })
   })
 
-  describe('空文字列を渡した場合', () => {
+  describe('空文字列の場合', () => {
     it('エラーを返却すること', () => {
       const inputText = ''
 
       assert.throws(() => new Translator(inputText), Error)
-    })
-  })
-
-  describe('不正な文字列を渡した場合', () => {
-    describe('数字のみの場合', () => {
-      it('エラーを返却すること', () => {
-        const inputText = '1'
-
-        assert.throws(() => new Translator(inputText), Error)
-      })
-    })
-
-    describe('アルファベット・英数字・一部記号以外含む場合', () => {
-      it('エラーを返却すること', () => {
-        const inputText = 'testテスト'
-
-        assert.throws(() => new Translator(inputText), Error)
-      })
     })
   })
 })

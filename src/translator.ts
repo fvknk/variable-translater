@@ -14,7 +14,6 @@ export class Translator {
 
   constructor(text: string) {
     if (text.length === 0) throw new Error('文字列が指定されていません。')
-    if (/(^[^a-zA-Z]+$|[^a-zA-Z0-9!?])/.test(text)) throw new Error('不正な文字列です。')
 
     this.#inputText = text
   }
