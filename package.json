@@ -14,10 +14,19 @@
   "contributes": {
     "commands": [
       {
-        "command": "variable-translator.helloWorld",
-        "title": "Hello World"
+        "command": "variable-translator.translateVariable",
+        "title": "Translate Variable"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "variableTranslator",
+      "properties": {
+        "variableTranslator.apiEndPoint": {
+          "type": "string",
+          "description": "翻訳 API のエンドポイント"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
