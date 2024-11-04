@@ -15,7 +15,8 @@ export class Runner {
     return `from: ${this.inputText} -> to: ${this.translatedText}`
   }
 
-  constructor(text: string) {
+  constructor(text: string | undefined) {
+    if (!text) throw new Error('文字列が指定されていません。')
     if (text.length === 0) throw new Error('文字列が指定されていません。')
 
     this.#inputText = text

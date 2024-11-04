@@ -31,6 +31,14 @@ describe('#constructor', () => {
       assert.throws(() => new Runner(inputText), Error)
     })
   })
+
+  describe('引数が undefined の場合', () => {
+    it('エラーを返却すること', () => {
+      const inputText = undefined
+
+      assert.throws(() => new Runner(inputText), Error)
+    })
+  })
 })
 
 describe('#exec', () => {
