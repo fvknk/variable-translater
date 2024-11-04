@@ -1,17 +1,18 @@
 import { Validator } from './validator'
+import { Parser } from './parser'
 import { Translator } from './translator'
 
 export class Runner {
   #inputText: string
-  #responseText: string = ''
+  #translatedText: string = ''
 
-  private set responseText(text: string) { this.#responseText = text }
+  private set translatedText(text: string) { this.#translatedText = text }
 
   get inputText() { return this.#inputText }
-  get responseText() { return this.#responseText }
+  get translatedText() { return this.#translatedText }
   get outputMessage() {
-    if (!this.responseText) throw new Error('結果が空です。')
-    return `from: ${this.inputText} -> to: ${this.responseText}`
+    if (!this.translatedText) throw new Error('結果が空です。')
+    return `from: ${this.inputText} -> to: ${this.translatedText}`
   }
 
   constructor(text: string) {
@@ -23,7 +24,9 @@ export class Runner {
   async exec(): Promise<string> {
     new Validator(this.inputText).exec()
 
-    this.responseText = await new Translator(this.inputText).exec()
+    const parsedText = new Parser(this.inputText).exec()
+
+    this.translatedText = await new Translator(parsedText).exec()
 
     return this.outputMessage
   }

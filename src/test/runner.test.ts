@@ -13,7 +13,7 @@ describe('#constructor', () => {
       const runner = new Runner(inputText)
 
       assert.strictEqual(runner.inputText, inputText)
-      assert.strictEqual(runner.responseText, '')
+      assert.strictEqual(runner.translatedText, '')
     })
 
     it('outputMessage を呼び出すとエラーを返却すること', () => {

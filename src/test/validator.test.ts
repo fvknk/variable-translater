@@ -50,7 +50,6 @@ describe('#exec', () => {
     })
   })
 
-
   describe('アルファベットと一部記号以外を含む文字列の場合', () => {
     it('エラーを返却すること', () => {
       const inputText = 'testテスト'
