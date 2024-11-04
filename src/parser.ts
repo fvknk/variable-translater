@@ -19,14 +19,14 @@ export class Parser {
   }
 
   exec(): string {
-    const klass = this.findClass(this.inputText)
-    return new klass(this.inputText).naturalText
+    const caseClass = this.findClass(this.inputText)
+    return new caseClass(this.inputText).naturalText
   }
 
-  private findClass(inputText: string) {
-    if (SnakeCase.applyTo(inputText)) return SnakeCase
-    if (KebabCase.applyTo(inputText)) return KebabCase
-    if (CamelCase.applyTo(inputText)) return CamelCase
-    return Case
+  private findClass(text: string) {
+    const caseClasses = [SnakeCase, KebabCase, CamelCase]
+    const caseClass = caseClasses.find((caseClass) => caseClass.applyTo(text))
+
+    return caseClass || Case
   }
 }
