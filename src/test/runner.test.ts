@@ -89,8 +89,6 @@ describe('#exec', () => {
     const inputText = '1'
 
     it('エラーを返却すること', async () => {
-      requestStub.resolves('')
-
       assert.rejects(async () => await new Runner(inputText).exec(), Error)
     })
   })
