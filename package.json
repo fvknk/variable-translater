@@ -1,7 +1,8 @@
 {
   "name": "variable-translator",
   "displayName": "variable-translator",
-  "description": "",
+  "description": "変数名・メソッド名を日本語に翻訳する拡張機能。",
+  "publisher": "fvknk97034",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.94.0"
