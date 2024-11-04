@@ -26,6 +26,15 @@
           "description": "翻訳 API のエンドポイント"
         }
       }
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorHasSelection",
+          "command": "variable-translator.translateVariable",
+          "group": "z_commands"
+        }
+      ]
     }
   },
   "scripts": {
