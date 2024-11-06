@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 
 import { response } from './types'
-import { ValidationError } from './error'
+import { EmptyVariableError, ValidationError } from './error'
 
 export class Translator {
   #inputText: string
@@ -22,7 +22,7 @@ export class Translator {
   async exec(): Promise<string> {
     this.response = await this.request(this.inputText)
 
-    if (!this.response || !this.outputText) throw new Error('結果が空です。')
+    if (!this.response || !this.outputText) throw new EmptyVariableError('結果が空です。')
 
     return this.outputText
   }

@@ -5,3 +5,11 @@ export class ValidationError extends Error {
     super(message)
   }
 }
+export class EmptyVariableError extends Error {
+  name: string = 'EmptyVariableError'
+
+  constructor(message: string) {
+    super(message)
+  }
+
+}
