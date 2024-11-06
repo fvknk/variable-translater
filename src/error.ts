@@ -11,5 +11,4 @@ export class EmptyVariableError extends Error {
   constructor(message: string) {
     super(message)
   }
-
 }
