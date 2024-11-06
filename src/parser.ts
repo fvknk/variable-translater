@@ -3,6 +3,8 @@ import { KebabCase } from './cases/kebab_case'
 import { SnakeCase } from './cases/snake_case'
 import { CamelCase } from './cases/camel_case'
 
+import { ValidationError } from './error'
+
 export class Parser {
   #inputText: string
   #outputText: string = ''
@@ -13,7 +15,7 @@ export class Parser {
   get outputText() { return this.#outputText }
 
   constructor(text: string) {
-    if (text.length === 0) throw new Error('文字列が指定されていません。')
+    if (text.length === 0) throw new ValidationError('文字列が指定されていません。')
 
     this.#inputText = text
   }

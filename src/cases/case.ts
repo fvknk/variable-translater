@@ -1,3 +1,5 @@
+import { UncallableError, ValidationError } from '../error'
+
 export class Case {
   #inputText: string
 
@@ -5,13 +7,13 @@ export class Case {
   get naturalText(): string { return this.trimUnderscore(this.inputText) }
 
   constructor(text: string) {
-    if (text.length === 0) throw new Error('文字列が指定されていません。')
+    if (text.length === 0) throw new ValidationError('文字列が指定されていません。')
 
     this.#inputText = text
   }
 
   static applyTo(_: string): boolean {
-    return callUnableMethod()
+    throw new UncallableError('許可されていない呼び出しです。')
   }
 
   private trimUnderscore(text: string): string {
@@ -23,8 +25,4 @@ export class Case {
     if (text.slice(-1) === '_') return Case.trimUnderscore(text.slice(0, -1))
     return text
   }
-}
-
-function callUnableMethod(): any {
-  throw new Error('許可されていない呼び出しです。')
 }

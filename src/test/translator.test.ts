@@ -4,6 +4,7 @@ import { describe, it, before, after } from 'mocha'
 import sinon from 'sinon'
 
 import { Translator } from '../translator'
+import { EmptyVariableError, ValidationError } from '../error'
 
 describe('#constructor', () => {
   describe('空文字列でない場合', () => {
@@ -21,7 +22,7 @@ describe('#constructor', () => {
     it('エラーを返却すること', () => {
       const inputText = ''
 
-      assert.throws(() => new Translator(inputText), Error)
+      assert.throws(() => new Translator(inputText), ValidationError)
     })
   })
 })
@@ -61,7 +62,7 @@ describe('#exec', () => {
       it('エラーを返却すること', () => {
         requestStub.rejects()
 
-        assert.rejects(async () => await new Translator('test').exec(), Error)
+        assert.rejects(async () => await new Translator('test').exec(), EmptyVariableError)
       })
     })
 
@@ -71,7 +72,7 @@ describe('#exec', () => {
           const res = null
           requestStub.resolves(res)
 
-          assert.rejects(async () => await new Translator('test').exec(), Error)
+          assert.rejects(async () => await new Translator('test').exec(), EmptyVariableError)
         })
       })
     })
@@ -81,7 +82,7 @@ describe('#exec', () => {
         const res = {}
         requestStub.resolves(res)
 
-        assert.rejects(async () => await new Translator('test').exec(), Error)
+        assert.rejects(async () => await new Translator('test').exec(), EmptyVariableError)
       })
     })
 
@@ -90,7 +91,7 @@ describe('#exec', () => {
         const res = { text: '' }
         requestStub.resolves(res)
 
-        assert.rejects(async () => await new Translator('test').exec(), Error)
+        assert.rejects(async () => await new Translator('test').exec(), EmptyVariableError)
       })
     })
   })
