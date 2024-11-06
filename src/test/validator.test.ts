@@ -5,56 +5,58 @@ import { describe, it } from 'mocha'
 import { Validator } from '../validator'
 import { ValidationError } from '../error'
 
-describe('#constructor', () => {
-  describe('引数が空文字列でない場合', () => {
-    it('値が正しく代入されていること', () => {
-      const inputText = 'test'
-      const runner = new Validator(inputText)
+describe('Validator', () => {
+  describe('#constructor', () => {
+    describe('引数が空文字列でない場合', () => {
+      it('値が正しく代入されていること', () => {
+        const inputText = 'test'
+        const runner = new Validator(inputText)
 
-      assert.strictEqual(runner.inputText, inputText)
+        assert.strictEqual(runner.inputText, inputText)
+      })
+    })
+
+    describe('引数が空文字列の場合', () => {
+      it('エラーを返却すること', () => {
+        const inputText = ''
+
+        assert.throws(() => new Validator(inputText), ValidationError)
+      })
     })
   })
 
-  describe('引数が空文字列の場合', () => {
-    it('エラーを返却すること', () => {
-      const inputText = ''
+  describe('#exec', () => {
+    describe('1文字以上のアルファベットを含む文字列の場合', () => {
+      it('true を返却すること', () => {
+        const inputText = 'abcXYZ!?-_'
+        const actual = new Validator(inputText).exec()
 
-      assert.throws(() => new Validator(inputText), ValidationError)
+        assert.strictEqual(actual, true)
+      })
     })
-  })
-})
 
-describe('#exec', () => {
-  describe('1文字以上のアルファベットを含む文字列の場合', () => {
-    it('true を返却すること', () => {
-      const inputText = 'abcXYZ!?-_'
-      const actual = new Validator(inputText).exec()
+    describe('数字のみの文字列の場合', () => {
+      it('エラーを返却すること', () => {
+        const inputText = '1'
 
-      assert.strictEqual(actual, true)
+        assert.throws(() => new Validator(inputText).exec(), ValidationError)
+      })
     })
-  })
 
-  describe('数字のみの文字列の場合', () => {
-    it('エラーを返却すること', () => {
-      const inputText = '1'
+    describe('記号のみの文字列の場合', () => {
+      it('エラーを返却すること', () => {
+        const inputText = '-'
 
-      assert.throws(() => new Validator(inputText).exec(), ValidationError)
+        assert.throws(() => new Validator(inputText).exec(), ValidationError)
+      })
     })
-  })
 
-  describe('記号のみの文字列の場合', () => {
-    it('エラーを返却すること', () => {
-      const inputText = '-'
+    describe('アルファベットと一部記号以外を含む文字列の場合', () => {
+      it('エラーを返却すること', () => {
+        const inputText = 'testテスト'
 
-      assert.throws(() => new Validator(inputText).exec(), ValidationError)
-    })
-  })
-
-  describe('アルファベットと一部記号以外を含む文字列の場合', () => {
-    it('エラーを返却すること', () => {
-      const inputText = 'testテスト'
-
-      assert.throws(() => new Validator(inputText).exec(), ValidationError)
+        assert.throws(() => new Validator(inputText).exec(), ValidationError)
+      })
     })
   })
 })
