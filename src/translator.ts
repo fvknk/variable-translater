@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 
 import { response } from './types'
+import { ValidationError } from './error'
 
 export class Translator {
   #inputText: string
@@ -13,7 +14,7 @@ export class Translator {
   get outputText(): string | null { return this.response?.text || null }
 
   constructor(text: string) {
-    if (text.length === 0) throw new Error('文字列が指定されていません。')
+    if (text.length === 0) throw new ValidationError('文字列が指定されていません。')
 
     this.#inputText = text
   }

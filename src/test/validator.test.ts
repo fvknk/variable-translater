@@ -3,6 +3,7 @@ import * as assert from 'assert'
 import { describe, it } from 'mocha'
 
 import { Validator } from '../validator'
+import { ValidationError } from '../error'
 
 describe('#constructor', () => {
   describe('引数が空文字列でない場合', () => {
@@ -18,7 +19,7 @@ describe('#constructor', () => {
     it('エラーを返却すること', () => {
       const inputText = ''
 
-      assert.throws(() => new Validator(inputText), Error)
+      assert.throws(() => new Validator(inputText), ValidationError)
     })
   })
 })
@@ -37,7 +38,7 @@ describe('#exec', () => {
     it('エラーを返却すること', () => {
       const inputText = '1'
 
-      assert.throws(() => new Validator(inputText).exec(), Error)
+      assert.throws(() => new Validator(inputText).exec(), ValidationError)
     })
   })
 
@@ -45,7 +46,7 @@ describe('#exec', () => {
     it('エラーを返却すること', () => {
       const inputText = '-'
 
-      assert.throws(() => new Validator(inputText).exec(), Error)
+      assert.throws(() => new Validator(inputText).exec(), ValidationError)
     })
   })
 
@@ -53,7 +54,7 @@ describe('#exec', () => {
     it('エラーを返却すること', () => {
       const inputText = 'testテスト'
 
-      assert.throws(() => new Validator(inputText).exec(), Error)
+      assert.throws(() => new Validator(inputText).exec(), ValidationError)
     })
   })
 })

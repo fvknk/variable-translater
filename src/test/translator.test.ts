@@ -4,6 +4,7 @@ import { describe, it, before, after } from 'mocha'
 import sinon from 'sinon'
 
 import { Translator } from '../translator'
+import { ValidationError } from '../error'
 
 describe('#constructor', () => {
   describe('空文字列でない場合', () => {
@@ -21,7 +22,7 @@ describe('#constructor', () => {
     it('エラーを返却すること', () => {
       const inputText = ''
 
-      assert.throws(() => new Translator(inputText), Error)
+      assert.throws(() => new Translator(inputText), ValidationError)
     })
   })
 })

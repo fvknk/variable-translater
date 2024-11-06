@@ -1,6 +1,7 @@
 import { Validator } from './validator'
 import { Parser } from './parser'
 import { Translator } from './translator'
+import { ValidationError } from './error'
 
 export class Runner {
   #inputText: string
@@ -16,8 +17,8 @@ export class Runner {
   }
 
   constructor(text: string | undefined) {
-    if (!text) throw new Error('文字列が指定されていません。')
-    if (text.length === 0) throw new Error('文字列が指定されていません。')
+    if (!text) throw new ValidationError('文字列が指定されていません。')
+    if (text.length === 0) throw new ValidationError('文字列が指定されていません。')
 
     this.#inputText = text
   }

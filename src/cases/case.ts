@@ -1,3 +1,5 @@
+import { ValidationError } from '../error'
+
 export class Case {
   #inputText: string
 
@@ -5,7 +7,7 @@ export class Case {
   get naturalText(): string { return this.trimUnderscore(this.inputText) }
 
   constructor(text: string) {
-    if (text.length === 0) throw new Error('文字列が指定されていません。')
+    if (text.length === 0) throw new ValidationError('文字列が指定されていません。')
 
     this.#inputText = text
   }

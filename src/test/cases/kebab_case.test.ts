@@ -2,6 +2,7 @@ import * as assert from 'assert'
 
 import { describe, it } from 'mocha'
 import { KebabCase } from '../../cases/kebab_case'
+import { ValidationError } from '../../error'
 
 describe('#constructor', () => {
   describe('引数が空文字列でない場合', () => {
@@ -19,7 +20,7 @@ describe('#constructor', () => {
     it('エラーを返却すること', () => {
       const inputText = ''
 
-      assert.throws(() => new KebabCase(inputText), Error)
+      assert.throws(() => new KebabCase(inputText), ValidationError)
     })
   })
 })

@@ -5,6 +5,7 @@ import sinon from 'sinon'
 
 import { Runner } from '../runner'
 import { Translator } from '../translator'
+import { ValidationError } from '../error'
 
 describe('#constructor', () => {
   describe('引数が空文字列でない場合', () => {
@@ -28,7 +29,7 @@ describe('#constructor', () => {
     it('エラーを返却すること', () => {
       const inputText = ''
 
-      assert.throws(() => new Runner(inputText), Error)
+      assert.throws(() => new Runner(inputText), ValidationError)
     })
   })
 
@@ -36,7 +37,7 @@ describe('#constructor', () => {
     it('エラーを返却すること', () => {
       const inputText = undefined
 
-      assert.throws(() => new Runner(inputText), Error)
+      assert.throws(() => new Runner(inputText), ValidationError)
     })
   })
 })
@@ -97,7 +98,7 @@ describe('#exec', () => {
     const inputText = '1'
 
     it('エラーを返却すること', async () => {
-      assert.rejects(async () => await new Runner(inputText).exec(), Error)
+      assert.rejects(async () => await new Runner(inputText).exec(), ValidationError)
     })
   })
 })
