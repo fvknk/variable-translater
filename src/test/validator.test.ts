@@ -1,7 +1,6 @@
 import * as assert from 'assert'
 
-import { describe, it, before, after } from 'mocha'
-import sinon from 'sinon'
+import { describe, it } from 'mocha'
 
 import { Validator } from '../validator'
 
