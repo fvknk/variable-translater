@@ -12,3 +12,11 @@ export class EmptyVariableError extends Error {
     super(message)
   }
 }
+
+export class UncallableError extends Error {
+  name: string = 'UncallableError'
+
+  constructor(message: string) {
+    super(message)
+  }
+}

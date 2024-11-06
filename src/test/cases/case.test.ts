@@ -2,7 +2,7 @@ import * as assert from 'assert'
 
 import { describe, it } from 'mocha'
 import { Case } from '../../cases/case'
-import { ValidationError } from '../../error'
+import { UncallableError, ValidationError } from '../../error'
 
 describe('#constructor', () => {
   describe('引数が空文字列でない場合', () => {
@@ -26,7 +26,7 @@ describe('#constructor', () => {
 
 describe('#applyTo', () => {
   it('エラーを返却すること', () => {
-    assert.throws(() => Case.applyTo('test'), Error)
+    assert.throws(() => Case.applyTo('test'), UncallableError)
   })
 })
 
