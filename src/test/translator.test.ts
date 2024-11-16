@@ -3,7 +3,7 @@ import * as assert from 'assert'
 import { describe, it, before, after } from 'mocha'
 import sinon from 'sinon'
 
-import { Translator } from '../translator'
+import { Translator } from '../translators/translator'
 import { EmptyVariableError, ValidationError } from '../error'
 
 describe('Translator', () => {

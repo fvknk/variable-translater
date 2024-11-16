@@ -22,9 +22,9 @@
     "configuration": {
       "title": "variableTranslator",
       "properties": {
-        "variableTranslator.apiEndPoint": {
+        "variableTranslator.gasApiEndPoint": {
           "type": "string",
-          "description": "翻訳 API のエンドポイント"
+          "description": "GAS の翻訳 API のエンドポイント"
         }
       }
     },

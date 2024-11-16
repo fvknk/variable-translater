@@ -1,7 +1,5 @@
-import * as vscode from 'vscode'
-
-import { response } from './types'
-import { EmptyVariableError, ValidationError } from './error'
+import { response } from '../types'
+import { EmptyVariableError, UncallableError, ValidationError } from '../error'
 
 export class Translator {
   #inputText: string
@@ -27,12 +25,7 @@ export class Translator {
     return this.outputText
   }
 
-  async request(text: string): Promise<response> {
-    const params = { text }
-    const query = new URLSearchParams(params)
-    const endpoint = vscode.workspace.getConfiguration('variableTranslator').get<string>('apiEndPoint')
-
-    const url = `${endpoint}?${query}`
-    return await fetch(url).then(data => data.json()) as response
+  request(text: string): Promise<response> {
+    throw new UncallableError('許可されていない呼び出しです。')
   }
 }

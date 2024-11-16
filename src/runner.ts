@@ -1,6 +1,6 @@
 import { Validator } from './validator'
 import { Parser } from './parser'
-import { Translator } from './translator'
+import { GasTranslator } from './translators/gasTranslator'
 import { EmptyVariableError, ValidationError } from './error'
 
 export class Runner {
@@ -28,7 +28,7 @@ export class Runner {
 
     const parsedText = new Parser(this.inputText).exec()
 
-    this.translatedText = await new Translator(parsedText).exec()
+    this.translatedText = await new GasTranslator(parsedText).exec()
 
     return this.outputMessage
   }

@@ -4,7 +4,7 @@ import { describe, it, before, after } from 'mocha'
 import sinon from 'sinon'
 
 import { Runner } from '../runner'
-import { Translator } from '../translator'
+import { GasTranslator } from '../translators/gasTranslator'
 import { EmptyVariableError, ValidationError } from '../error'
 
 describe('Runner', () => {
@@ -46,7 +46,7 @@ describe('Runner', () => {
   describe('#exec', () => {
     let requestStub: sinon.SinonStub
     before(() => {
-      requestStub = sinon.stub(Translator.prototype, 'exec')
+      requestStub = sinon.stub(GasTranslator.prototype, 'exec')
     })
 
     after(() => {
