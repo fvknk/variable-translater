@@ -18,14 +18,14 @@ export class Translator {
   }
 
   async exec(): Promise<string> {
-    this.response = await this.request(this.inputText)
+    this.response = await this.request()
 
     if (!this.response || !this.outputText) throw new EmptyVariableError('結果が空です。')
 
     return this.outputText
   }
 
-  request(text: string): Promise<response> {
+  request(): Promise<response> {
     throw new UncallableError('許可されていない呼び出しです。')
   }
 }
