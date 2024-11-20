@@ -1,14 +1,14 @@
-import { response } from '../types'
+import { translatorResponse } from '../types'
 import { EmptyVariableError, UncallableError, ValidationError } from '../error'
 
 export class Translator {
   #inputText: string
-  #response: response | null = null
+  #response: translatorResponse | null = null
 
-  private set response(res) { this.#response = res }
+  protected set response(res) { this.#response = res }
 
   get inputText(): string { return this.#inputText }
-  get response(): response | null { return this.#response }
+  get response(): translatorResponse | null { return this.#response }
   get outputText(): string | null { return this.response?.text || null }
 
   constructor(text: string) {
@@ -25,7 +25,7 @@ export class Translator {
     return this.outputText
   }
 
-  request(): Promise<response> {
+  request(): Promise<translatorResponse> {
     throw new UncallableError('許可されていない呼び出しです。')
   }
 }
