@@ -13,8 +13,8 @@ export class EmptyVariableError extends Error {
   }
 }
 
-export class UncallableError extends Error {
-  name: string = 'UncallableError'
+export class NotImplementedError extends Error {
+  name: string = 'NotImplementedError'
 
   constructor(message: string) {
     super(message)
