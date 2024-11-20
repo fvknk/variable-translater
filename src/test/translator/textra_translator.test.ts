@@ -4,9 +4,32 @@ import { describe, it, before, after } from 'mocha'
 import sinon from 'sinon'
 
 import { TextraTranslator } from '../../translators/textra_translator'
-import { EmptyVariableError } from '../../error'
+import { EmptyVariableError, UncallableError } from '../../error'
 
 describe('TextraTranslator', () => {
+  describe('#set', () => {
+    describe('URL に代入しようとした場合', () => {
+      it('エラーを返却すること', () => {
+        const translator = new TextraTranslator('test')
+        assert.throws(() => translator.URL = 'invalidOperation', UncallableError)
+      })
+    })
+
+    describe('API_NAME に代入しようとした場合', () => {
+      it('エラーを返却すること', () => {
+        const translator = new TextraTranslator('test')
+        assert.throws(() => translator.API_NAME = 'invalidOperation', UncallableError)
+      })
+    })
+
+    describe('API_PARAM に代入しようとした場合', () => {
+      it('エラーを返却すること', () => {
+        const translator = new TextraTranslator('test')
+        assert.throws(() => translator.API_PARAM = 'invalidOperation', UncallableError)
+      })
+    })
+  })
+
   describe('#request', () => {
     let apiKeyStub: sinon.SinonStub
     let apiSecretStub: sinon.SinonStub
