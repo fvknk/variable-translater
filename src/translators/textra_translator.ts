@@ -2,14 +2,14 @@ import * as vscode from 'vscode'
 
 import { translatorResponse, textraResponse, tokenResponse } from '../types'
 import { Translator } from './translator'
-import { EmptyVariableError, UncallableError } from '../error'
+import { EmptyVariableError, NotImplementedError } from '../error'
 
 export class TextraTranslator extends Translator {
   private access_token: string | null = null
 
-  set URL(_: any) { throw new UncallableError('許可されていない呼び出しです。') }
-  set API_NAME(_: any) { throw new UncallableError('許可されていない呼び出しです。') }
-  set API_PARAM(_: any) { throw new UncallableError('許可されていない呼び出しです。') }
+  set URL(_: any) { throw new NotImplementedError('許可されていない呼び出しです。') }
+  set API_NAME(_: any) { throw new NotImplementedError('許可されていない呼び出しです。') }
+  set API_PARAM(_: any) { throw new NotImplementedError('許可されていない呼び出しです。') }
 
   get URL(): string { return 'https://mt-auto-textra-mlt.ucri.jgn-x.jp' }
   get API_NAME(): string { return 'mt' }

@@ -2,7 +2,7 @@ import * as assert from 'assert'
 
 import { describe, it } from 'mocha'
 import { Case } from '../../cases/case'
-import { UncallableError, ValidationError } from '../../error'
+import { NotImplementedError, ValidationError } from '../../error'
 
 describe('Case', () => {
   describe('#constructor', () => {
@@ -27,7 +27,7 @@ describe('Case', () => {
 
   describe('#applyTo', () => {
     it('エラーを返却すること', () => {
-      assert.throws(() => Case.applyTo('test'), UncallableError)
+      assert.throws(() => Case.applyTo('test'), NotImplementedError)
     })
   })
 

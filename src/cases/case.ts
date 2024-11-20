@@ -1,4 +1,4 @@
-import { UncallableError, ValidationError } from '../error'
+import { NotImplementedError, ValidationError } from '../error'
 
 export class Case {
   #inputText: string
@@ -13,7 +13,7 @@ export class Case {
   }
 
   static applyTo(_: string): boolean {
-    throw new UncallableError('許可されていない呼び出しです。')
+    throw new NotImplementedError('許可されていない呼び出しです。')
   }
 
   private trimUnderscore(text: string): string {

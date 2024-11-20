@@ -4,28 +4,28 @@ import { describe, it, before, after } from 'mocha'
 import sinon from 'sinon'
 
 import { TextraTranslator } from '../../translators/textra_translator'
-import { EmptyVariableError, UncallableError } from '../../error'
+import { EmptyVariableError, NotImplementedError } from '../../error'
 
 describe('TextraTranslator', () => {
   describe('#set', () => {
     describe('URL に代入しようとした場合', () => {
       it('エラーを返却すること', () => {
         const translator = new TextraTranslator('test')
-        assert.throws(() => translator.URL = 'invalidOperation', UncallableError)
+        assert.throws(() => translator.URL = 'invalidOperation', NotImplementedError)
       })
     })
 
     describe('API_NAME に代入しようとした場合', () => {
       it('エラーを返却すること', () => {
         const translator = new TextraTranslator('test')
-        assert.throws(() => translator.API_NAME = 'invalidOperation', UncallableError)
+        assert.throws(() => translator.API_NAME = 'invalidOperation', NotImplementedError)
       })
     })
 
     describe('API_PARAM に代入しようとした場合', () => {
       it('エラーを返却すること', () => {
         const translator = new TextraTranslator('test')
-        assert.throws(() => translator.API_PARAM = 'invalidOperation', UncallableError)
+        assert.throws(() => translator.API_PARAM = 'invalidOperation', NotImplementedError)
       })
     })
   })

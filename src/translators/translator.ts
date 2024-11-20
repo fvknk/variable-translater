@@ -1,5 +1,5 @@
 import { translatorResponse } from '../types'
-import { EmptyVariableError, UncallableError, ValidationError } from '../error'
+import { EmptyVariableError, NotImplementedError, ValidationError } from '../error'
 
 export class Translator {
   #inputText: string
@@ -26,6 +26,6 @@ export class Translator {
   }
 
   request(): Promise<translatorResponse> {
-    throw new UncallableError('許可されていない呼び出しです。')
+    throw new NotImplementedError('許可されていない呼び出しです。')
   }
 }
