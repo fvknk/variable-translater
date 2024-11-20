@@ -22,9 +22,34 @@
     "configuration": {
       "title": "variableTranslator",
       "properties": {
+        "variableTranslator.selectedTranslator": {
+          "type": "string",
+          "description": "使用する翻訳サービス",
+          "enum": [
+            "GasTranslator",
+            "TextraTranslator"
+          ],
+          "enumItemLabels": [
+            "GAS",
+            "みんなの自動翻訳@TexTra"
+          ],
+          "default": "GasTranslator"
+        },
         "variableTranslator.gasApiEndPoint": {
           "type": "string",
           "description": "GAS の翻訳 API のエンドポイント"
+        },
+        "variableTranslator.textraApiKey": {
+          "type": "string",
+          "description": "みんなの自動翻訳@TexTra で発行されている API キー"
+        },
+        "variableTranslator.textraApiSecret": {
+          "type": "string",
+          "description": "みんなの自動翻訳@TexTra で発行されている API シークレット"
+        },
+        "variableTranslator.textraLoginId": {
+          "type": "string",
+          "description": "みんなの自動翻訳@TexTra のログイン ID"
         }
       }
     },
