@@ -1,6 +1,12 @@
+import * as vscode from 'vscode'
+
 import { Validator } from './validator'
 import { Parser } from './parser'
-import { Translator } from './translator'
+
+import { Translator } from './translators/translator'
+import { GasTranslator } from './translators/gas_translator'
+import { TextraTranslator } from './translators/textra_translator'
+
 import { EmptyVariableError, ValidationError } from './error'
 
 export class Runner {
@@ -28,8 +34,21 @@ export class Runner {
 
     const parsedText = new Parser(this.inputText).exec()
 
-    this.translatedText = await new Translator(parsedText).exec()
+    const translator = this.selectedTranslator()
+    this.translatedText = await new translator(parsedText).exec()
 
     return this.outputMessage
+  }
+
+  private selectedTranslator() {
+    const translatorName = vscode.workspace.getConfiguration('variableTranslator').get<string>('selectedTranslator')
+    switch (translatorName) {
+      case 'GasTranslator':
+        return GasTranslator
+      case 'TextraTranslator':
+        return TextraTranslator
+      default:
+        return Translator
+    }
   }
 }

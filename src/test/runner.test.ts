@@ -4,7 +4,8 @@ import { describe, it, before, after } from 'mocha'
 import sinon from 'sinon'
 
 import { Runner } from '../runner'
-import { Translator } from '../translator'
+import { GasTranslator } from '../translators/gas_translator'
+
 import { EmptyVariableError, ValidationError } from '../error'
 
 describe('Runner', () => {
@@ -44,13 +45,20 @@ describe('Runner', () => {
   })
 
   describe('#exec', () => {
-    let requestStub: sinon.SinonStub
+    let runnerSelectedTranslator: sinon.SinonStub
+    let gasTranslatorRequestStub: sinon.SinonStub
+
     before(() => {
-      requestStub = sinon.stub(Translator.prototype, 'exec')
+      runnerSelectedTranslator = sinon.stub(Runner.prototype, <any>'selectedTranslator')
+      runnerSelectedTranslator.returns(GasTranslator)
+
+      gasTranslatorRequestStub = sinon.stub(GasTranslator.prototype, 'exec')
     })
 
     after(() => {
-      requestStub.restore()
+      runnerSelectedTranslator.restore()
+
+      gasTranslatorRequestStub.restore()
     })
 
     describe('正常な文字列を渡した場合', () => {
@@ -61,7 +69,7 @@ describe('Runner', () => {
         const expect = `from: ${inputText} -> to: ${outputText}`
 
         it('メッセージを返却すること', async () => {
-          requestStub.resolves(outputText)
+          gasTranslatorRequestStub.resolves(outputText)
 
           const actual = await new Runner(inputText).exec()
 
@@ -69,7 +77,7 @@ describe('Runner', () => {
         })
 
         it('outputMessage を呼び出した際にメッセージを返却すること', async () => {
-          requestStub.resolves(outputText)
+          gasTranslatorRequestStub.resolves(outputText)
 
           const runner = new Runner(inputText)
           await runner.exec()
@@ -81,7 +89,7 @@ describe('Runner', () => {
       describe('異常なレスポンスを得た場合', () => {
         describe('空文字列を返却された場合', () => {
           it('エラーを返却すること', async () => {
-            requestStub.resolves('')
+            gasTranslatorRequestStub.resolves('')
 
             assert.rejects(async () => await new Runner(inputText).exec(), EmptyVariableError)
           })
@@ -89,7 +97,7 @@ describe('Runner', () => {
 
         describe('null を返却された場合', () => {
           it('エラーを返却すること', async () => {
-            requestStub.resolves(null)
+            gasTranslatorRequestStub.resolves(null)
 
             assert.rejects(async () => await new Runner(inputText).exec(), EmptyVariableError)
           })
