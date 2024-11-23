@@ -1,7 +1,9 @@
+import { ICase } from './case_interface'
+
 import { ValidationError } from '../errors/validation_error'
 import { NotImplementedError } from '../errors/not_implemented_error'
 
-export class Case {
+export class Case implements ICase {
   #inputText: string
 
   get inputText(): string { return this.#inputText }

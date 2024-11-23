@@ -1,3 +1,4 @@
+import { ICase } from './cases/case_interface'
 import { Case } from './cases/case'
 import { KebabCase } from './cases/kebab_case'
 import { SnakeCase } from './cases/snake_case'
@@ -21,14 +22,14 @@ export class Parser {
   }
 
   exec(): string {
-    const caseClass = this.findClass(this.inputText)
-    return new caseClass(this.inputText).naturalText
+    const caseInstance: ICase = this.createCase(this.inputText)
+    return caseInstance.naturalText
   }
 
-  private findClass(text: string) {
+  private createCase(text: string): ICase {
     const caseClasses = [SnakeCase, KebabCase, CamelCase]
-    const caseClass = caseClasses.find((caseClass) => caseClass.applyTo(text))
+    const caseClass = caseClasses.find((caseClass) => caseClass.applyTo(text)) || Case
 
-    return caseClass || Case
+    return new caseClass(this.inputText)
   }
 }
