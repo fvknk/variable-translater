@@ -1,12 +1,15 @@
-import * as assert from 'assert'
+import * as vscode from 'vscode'
 
+import * as assert from 'assert'
 import { describe, it, before, after } from 'mocha'
 import sinon from 'sinon'
 
 import { Runner } from '../runner'
+
 import { GasTranslator } from '../translators/gas_translator'
 
-import { EmptyVariableError, ValidationError } from '../error'
+import { ValidationError } from '../errors/validation_error'
+import { EmptyVariableError } from '../errors/empty_variable_error'
 
 describe('Runner', () => {
   describe('#constructor', () => {
@@ -45,19 +48,21 @@ describe('Runner', () => {
   })
 
   describe('#exec', () => {
-    let runnerSelectedTranslator: sinon.SinonStub
+    let translatorConfigStub: sinon.SinonStub
     let gasTranslatorRequestStub: sinon.SinonStub
 
     before(() => {
-      runnerSelectedTranslator = sinon.stub(Runner.prototype, <any>'selectedTranslator')
-      runnerSelectedTranslator.returns(GasTranslator)
+      translatorConfigStub = sinon.stub(vscode.workspace, 'getConfiguration')
+      const mockConfig = {
+        get: sinon.stub().withArgs('selectedTranslator').returns('GasTranslator')
+      }
+      translatorConfigStub.returns(mockConfig)
 
       gasTranslatorRequestStub = sinon.stub(GasTranslator.prototype, 'exec')
     })
 
     after(() => {
-      runnerSelectedTranslator.restore()
-
+      translatorConfigStub.restore()
       gasTranslatorRequestStub.restore()
     })
 

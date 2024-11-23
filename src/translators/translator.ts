@@ -1,7 +1,12 @@
-import { translatorResponse } from '../types'
-import { EmptyVariableError, NotImplementedError, ValidationError } from '../error'
+import { ITranslator } from './translator_interface'
 
-export class Translator {
+import { ValidationError } from '../errors/validation_error'
+import { EmptyVariableError } from '../errors/empty_variable_error'
+import { NotImplementedError } from '../errors/not_implemented_error'
+
+import { translatorResponse } from '../types'
+
+export class Translator implements ITranslator {
   #inputText: string
   #response: translatorResponse | null = null
 

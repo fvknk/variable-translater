@@ -4,7 +4,9 @@ import { describe, it, before, after } from 'mocha'
 import sinon from 'sinon'
 
 import { Translator } from '../../translators/translator'
-import { EmptyVariableError, ValidationError } from '../../error'
+
+import { ValidationError } from '../../errors/validation_error'
+import { EmptyVariableError } from '../../errors/empty_variable_error'
 
 describe('Translator', () => {
   describe('#constructor', () => {

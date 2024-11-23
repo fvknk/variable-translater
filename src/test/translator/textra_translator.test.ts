@@ -4,7 +4,9 @@ import { describe, it, before, after } from 'mocha'
 import sinon from 'sinon'
 
 import { TextraTranslator } from '../../translators/textra_translator'
-import { EmptyVariableError, NotImplementedError } from '../../error'
+
+import { EmptyVariableError } from '../../errors/empty_variable_error'
+import { NotImplementedError } from '../../errors/not_implemented_error'
 
 describe('TextraTranslator', () => {
   describe('#set', () => {

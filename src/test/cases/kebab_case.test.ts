@@ -1,8 +1,10 @@
 import * as assert from 'assert'
 
 import { describe, it } from 'mocha'
+
 import { KebabCase } from '../../cases/kebab_case'
-import { ValidationError } from '../../error'
+
+import { ValidationError } from '../../errors/validation_error'
 
 describe('KebabCase', () => {
   describe('#constructor', () => {

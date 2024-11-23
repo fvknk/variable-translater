@@ -1,8 +1,11 @@
 import * as assert from 'assert'
 
 import { describe, it } from 'mocha'
+
 import { Case } from '../../cases/case'
-import { NotImplementedError, ValidationError } from '../../error'
+
+import { ValidationError } from '../../errors/validation_error'
+import { NotImplementedError } from '../../errors/not_implemented_error'
 
 describe('Case', () => {
   describe('#constructor', () => {
