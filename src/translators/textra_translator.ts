@@ -1,14 +1,14 @@
 import * as vscode from 'vscode'
+
+import { ITranslator } from './translator_interface'
 import { Translator } from './translator'
 
 import { EmptyVariableError } from '../errors/empty_variable_error'
 import { NotImplementedError } from '../errors/not_implemented_error'
 
 import { translatorResponse, textraResponse, tokenResponse } from '../types'
-import { Translator } from './translator'
-import { EmptyVariableError, NotImplementedError } from '../error'
 
-export class TextraTranslator extends Translator {
+export class TextraTranslator extends Translator implements ITranslator {
   private access_token: string | null = null
 
   set URL(_: any) { throw new NotImplementedError('許可されていない呼び出しです。') }

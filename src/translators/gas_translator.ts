@@ -1,13 +1,13 @@
 import * as vscode from 'vscode'
+
+import { ITranslator } from './translator_interface'
 import { Translator } from './translator'
 
 import { EmptyVariableError } from '../errors/empty_variable_error'
 
 import { translatorResponse, gasResponse } from '../types'
-import { Translator } from './translator'
-import { EmptyVariableError } from '../error'
 
-export class GasTranslator extends Translator {
+export class GasTranslator extends Translator implements ITranslator {
   async request(): Promise<translatorResponse> {
     const res: gasResponse = await this.fetch()
     console.log(res)
