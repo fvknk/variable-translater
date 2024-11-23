@@ -3,7 +3,8 @@ import * as assert from 'assert'
 import { describe, it } from 'mocha'
 
 import { Validator } from '../validator'
-import { ValidationError } from '../error'
+
+import { ValidationError } from '../errors/validation_error'
 
 describe('Validator', () => {
   describe('#constructor', () => {

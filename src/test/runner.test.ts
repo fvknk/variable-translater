@@ -4,9 +4,11 @@ import { describe, it, before, after } from 'mocha'
 import sinon from 'sinon'
 
 import { Runner } from '../runner'
+
 import { GasTranslator } from '../translators/gas_translator'
 
-import { EmptyVariableError, ValidationError } from '../error'
+import { ValidationError } from '../errors/validation_error'
+import { EmptyVariableError } from '../errors/empty_variable_error'
 
 describe('Runner', () => {
   describe('#constructor', () => {

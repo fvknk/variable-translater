@@ -7,7 +7,8 @@ import { Translator } from './translators/translator'
 import { GasTranslator } from './translators/gas_translator'
 import { TextraTranslator } from './translators/textra_translator'
 
-import { EmptyVariableError, ValidationError } from './error'
+import { ValidationError } from './errors/validation_error'
+import { EmptyVariableError } from './errors/empty_variable_error'
 
 export class Runner {
   #inputText: string

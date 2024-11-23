@@ -1,5 +1,8 @@
+import { ValidationError } from '../errors/validation_error'
+import { EmptyVariableError } from '../errors/empty_variable_error'
+import { NotImplementedError } from '../errors/not_implemented_error'
+
 import { translatorResponse } from '../types'
-import { EmptyVariableError, NotImplementedError, ValidationError } from '../error'
 
 export class Translator {
   #inputText: string

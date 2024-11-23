@@ -1,4 +1,5 @@
-import { NotImplementedError, ValidationError } from '../error'
+import { ValidationError } from '../errors/validation_error'
+import { NotImplementedError } from '../errors/not_implemented_error'
 
 export class Case {
   #inputText: string

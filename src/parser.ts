@@ -3,7 +3,7 @@ import { KebabCase } from './cases/kebab_case'
 import { SnakeCase } from './cases/snake_case'
 import { CamelCase } from './cases/camel_case'
 
-import { ValidationError } from './error'
+import { ValidationError } from './errors/validation_error'
 
 export class Parser {
   #inputText: string

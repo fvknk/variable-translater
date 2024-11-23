@@ -1,4 +1,7 @@
 import * as vscode from 'vscode'
+import { Translator } from './translator'
+
+import { EmptyVariableError } from '../errors/empty_variable_error'
 
 import { translatorResponse, gasResponse } from '../types'
 import { Translator } from './translator'

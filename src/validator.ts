@@ -1,4 +1,4 @@
-import { ValidationError } from './error'
+import { ValidationError } from './errors/validation_error'
 
 export class Validator {
   #inputText: string
