@@ -4,7 +4,7 @@ import { SnakeCase } from './snake_case'
 
 export class CamelCase extends Case {
   get naturalText(): string {
-    return super.naturalText.replaceAll(/[A-Z]+/g, (s) => ` ${s}`).trim().toLowerCase()
+    return super.naturalText.replaceAll(/[A-Z]/g, (s) => ` ${s}`).trim().toLowerCase()
   }
 
   constructor(text: string) {
