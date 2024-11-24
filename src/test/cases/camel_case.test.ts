@@ -124,5 +124,15 @@ describe('CamelCase', () => {
         assert.strictEqual(new CamelCase(inputText).naturalText, expect)
       })
     })
+
+    describe('連続した大文字を含む場合', () => {
+      it('小文字、かつ空白で分書して返却すること', () => {
+        const inputText = 'thisIsAPen'
+        const expect = 'this is a pen'
+
+        assert.strictEqual(new CamelCase(inputText).naturalText, expect)
+      })
+    })
+
   })
 })
