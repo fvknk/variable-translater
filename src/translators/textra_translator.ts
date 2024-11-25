@@ -15,7 +15,7 @@ export class TextraTranslator extends Translator implements ITranslator {
   set API_NAME(_: any) { throw new NotImplementedError('許可されていない呼び出しです。') }
   set API_PARAM(_: any) { throw new NotImplementedError('許可されていない呼び出しです。') }
 
-  get URL(): string { return 'https://mt-auto-textra-mlt.ucri.jgn-x.jp' }
+  get URL(): string { return 'https://mt-auto-minhon-mlt.ucri.jgn-x.jp' }
   get API_NAME(): string { return 'mt' }
   get API_PARAM(): string { return 'generalNT_en_ja' }
 
