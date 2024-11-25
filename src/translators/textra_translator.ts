@@ -15,13 +15,13 @@ export class TextraTranslator extends Translator implements ITranslator {
   set API_NAME(_: any) { throw new NotImplementedError('許可されていない呼び出しです。') }
   set API_PARAM(_: any) { throw new NotImplementedError('許可されていない呼び出しです。') }
 
-  get URL(): string { return 'https://mt-auto-textra-mlt.ucri.jgn-x.jp' }
+  get URL(): string { return 'https://mt-auto-minhon-mlt.ucri.jgn-x.jp' }
   get API_NAME(): string { return 'mt' }
   get API_PARAM(): string { return 'generalNT_en_ja' }
 
   async request(): Promise<translatorResponse> {
-    if (!this.apiKey) throw new Error('API キーが未登録です。')
-    if (!this.apiSecret) throw new Error('API シークレットが未登録です。')
+    if (!this.apiKey()) throw new Error('API キーが未登録です。')
+    if (!this.apiSecret()) throw new Error('API シークレットが未登録です。')
 
     this.access_token = await this.fetchToken()
 
@@ -46,8 +46,8 @@ export class TextraTranslator extends Translator implements ITranslator {
   private createTokenRequestBody(): FormData {
     const body = new FormData()
     body.append('grant_type', 'client_credentials')
-    body.append('client_id', this.apiKey)
-    body.append('client_secret', this.apiSecret)
+    body.append('client_id', this.apiKey())
+    body.append('client_secret', this.apiSecret())
     body.append('urlAccessToken', `${this.URL}/oauth2/token.php`)
 
     return body
@@ -67,7 +67,7 @@ export class TextraTranslator extends Translator implements ITranslator {
 
     const body = new FormData()
     body.append('access_token', this.access_token)
-    body.append('key', this.apiKey)
+    body.append('key', this.apiKey())
     body.append('api_name', this.API_NAME)
     body.append('api_param', this.API_PARAM)
     body.append('name', loginId)
