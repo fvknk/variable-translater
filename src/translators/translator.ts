@@ -6,7 +6,7 @@ import { NotImplementedError } from '../errors/not_implemented_error'
 
 import { translatorResponse } from '../types'
 
-export class Translator implements ITranslator {
+export abstract class Translator implements ITranslator {
   #inputText: string
   #response: translatorResponse | null = null
 
