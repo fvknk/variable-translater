@@ -133,6 +133,5 @@ describe('CamelCase', () => {
         assert.strictEqual(new CamelCase(inputText).naturalText, expect)
       })
     })
-
   })
 })

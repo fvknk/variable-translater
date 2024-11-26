@@ -44,13 +44,11 @@ export class Runner {
 
   private selectedTranslator(text: string): ITranslator {
     const translatorName = vscode.workspace.getConfiguration('variableTranslator').get<string>('selectedTranslator')
-    switch (translatorName) {
-      case 'GasTranslator':
-        return new GasTranslator(text)
-      case 'TextraTranslator':
-        return new TextraTranslator(text)
-      default:
-        return new Translator(text)
-    }
+    const translators = [GasTranslator, TextraTranslator] as const
+    const translator: typeof translators[number] | undefined = translators.find(t => t.name === translatorName)
+
+    if (!translator) throw new Error('不正なクラスです。')
+
+    return new translator(text)
   }
 }

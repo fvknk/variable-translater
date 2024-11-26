@@ -27,8 +27,8 @@ export class Parser {
   }
 
   private createCase(text: string): ICase {
-    const caseClasses = [SnakeCase, KebabCase, CamelCase]
-    const caseClass = caseClasses.find((caseClass) => caseClass.applyTo(text)) || Case
+    const caseClasses = [SnakeCase, KebabCase, CamelCase] as const
+    const caseClass: typeof caseClasses[number] | Case = caseClasses.find((caseClass) => caseClass.applyTo(text)) || Case
 
     return new caseClass(this.inputText)
   }
